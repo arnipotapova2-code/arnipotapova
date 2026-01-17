@@ -1,10 +1,321 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <title>Arina Portfolio</title>
-</head>
-<body>
-  <h1>Сайт скоро будет здесь</h1>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ARNIPOTAPOVA — Портфолио AI-дизайнера и разработчика</title>
+    <meta name="description" content="Портфолио Арины Потаповой — создаю AI-фото и видео, которые экономят до 60% времени на реализацию идей. Дизайн, креатив и код." />
+    <meta name="keywords" content="AI-дизайн, портфолио, AI-фото, AI-видео, дизайнер, разработчик, креатив" />
+    <meta name="author" content="Арина Потапова" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://arnipotapova.com/" />
+    <meta property="og:title" content="ARNIPOTAPOVA — Портфолио AI-дизайнера и разработчика" />
+    <meta property="og:description" content="Создаю AI-фото и видео, которые экономят до 60% времени на реализацию идей. Дизайн, креатив и код." />
+    <meta property="og:image" content="images/me.png" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://arnipotapova.com/" />
+    <meta property="twitter:title" content="ARNIPOTAPOVA — Портфолио AI-дизайнера и разработчика" />
+    <meta property="twitter:description" content="Создаю AI-фото и видео, которые экономят до 60% времени на реализацию идей. Дизайн, креатив и код." />
+    <meta property="twitter:image" content="images/me.png" />
+    
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <header class="header">
+      <div class="header__inner">
+        <a href="#photo-description" class="logo" aria-label="ARNIPOTAPOVA — Главная">ARNIPOTAPOVA</a>
+
+        <nav class="nav" aria-label="Навигация">
+          <ul class="nav__list">
+            <li><a href="works.html" class="nav__link">РАБОТЫ</a></li>
+            <li><a href="#contacts" class="nav__link nav__link-contacts">КОНТАКТЫ</a></li>
+          </ul>
+        </nav>
+
+        <button class="burger" aria-label="Открыть меню">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
+      <nav class="burger-menu" aria-label="Мобильное меню">
+        <ul class="burger-menu__list">
+          <li><a href="works.html" class="burger-menu__link">РАБОТЫ</a></li>
+          <li><a href="#contacts" class="burger-menu__link burger-menu__link-contacts">КОНТАКТЫ</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section class="photo-section">
+        <span class="photo-name">arnipotapova</span>
+        <h1 id="photo-description" class="photo-description">AI DESIGN CREATIVE CODE</h1>
+
+        <div class="photo-wrapper">
+          <img src="images/me.png" alt="Арина Потапова — портрет" width="800" height="600" loading="eager" />
+        </div>
+
+        <img src="images/flower.png" alt="" class="flower" width="558" height="auto" loading="lazy" aria-hidden="true" />
+      </section>
+
+      <section class="buttons-section">
+        <a href="#about" class="btn btn-about" aria-label="Раскрыть информацию обо мне">
+          Обо мне
+          <img src="images/arrow.png" alt="" class="btn-arrow" width="40" height="40" aria-hidden="true" />
+        </a>
+
+        <article id="about" class="btn-text btn-text-mobile">
+          <p>
+            Я Арина. Создаю AI-фото и -видео, которые экономят до 60% времени на
+            реализацию идей. Помогаю визуализировать проекты, продукты и идеи,
+            чтобы сразу понимать, как всё будет выглядеть.
+            <br /><br />
+          </p>
+          <p>
+            Это особенно полезно для концептуальных и предметных фотосессий.
+            Вместо того чтобы сразу ехать на локацию, я генерирую предварительные
+            изображения, чтобы понять, что добавить или убрать, выбрать модель и
+            доработать концепцию. Это экономит время и помогает сразу выстроить
+            чёткую картину того, как всё будет работать.
+            <br /><br />
+          </p>
+          <p>
+            Для меня важно быть полезной бизнесу, а не полагаться на AI во всём.
+            Технологии — это инструмент, но креатив и понимание остаются за
+            людьми.
+            <br /><br />
+          </p>
+          <p>
+            Также занимаюсь дизайном и программированием. Этот сайт я сделала
+            сама.
+          </p>
+        </article>
+
+        <a href="works.html" class="btn btn-works" aria-label="Посмотреть все работы">
+          Работы
+          <img src="images/arrow.png" alt="" class="btn-arrow" width="40" height="40" aria-hidden="true" />
+        </a>
+
+        <article class="btn-text btn-text-desktop">
+          <p>
+            Я Арина. Создаю AI-фото и -видео, которые экономят до 60% времени на
+            реализацию идей. Помогаю визуализировать проекты, продукты и идеи,
+            чтобы сразу понимать, как всё будет выглядеть.
+            <br /><br />
+          </p>
+          <p>
+            Это особенно полезно для концептуальных и предметных фотосессий.
+            Вместо того чтобы сразу ехать на локацию, я генерирую предварительные
+            изображения, чтобы понять, что добавить или убрать, выбрать модель и
+            доработать концепцию. Это экономит время и помогает сразу выстроить
+            чёткую картину того, как всё будет работать.
+            <br /><br />
+          </p>
+          <p>
+            Для меня важно быть полезной бизнесу, а не полагаться на AI во всём.
+            Технологии — это инструмент, но креатив и понимание остаются за
+            людьми.
+            <br /><br />
+          </p>
+          <p>
+            Также занимаюсь дизайном и программированием. Этот сайт я сделала
+            сама.
+          </p>
+        </article>
+      </section>
+
+      <section id="works" class="works-section">
+        <div class="works-container">
+          <article class="work-item">
+            <div class="work-gallery">
+              <img
+                src="images/karina/k1.PNG"
+                alt="AI-съёмка для Карины Мурашкиной — работа 1"
+                class="work-image"
+                loading="lazy"
+                width="456"
+                height="550"
+              />
+              <img
+                src="images/karina/k6.PNG"
+                alt="AI-съёмка для Карины Мурашкиной — работа 2"
+                class="work-image"
+                loading="lazy"
+                width="353"
+                height="550"
+              />
+              <img
+                src="images/karina/k4.PNG"
+                alt="AI-съёмка для Карины Мурашкиной — работа 3"
+                class="work-image work-image-desktop"
+                loading="lazy"
+                width="369"
+                height="553"
+              />
+            </div>
+            <div class="work-header">
+              <h2 class="work-title">AI-Съёмка для Карины Мурашкиной</h2>
+              <p class="work-subtitle">@lovemurmur</p>
+            </div>
+            <a href="work-1.html" class="work-btn" aria-label="Посмотреть полностью работу для Карины Мурашкиной">
+              Посмотреть полностью
+              <img src="images/arrow.png" alt="" class="btn-arrow" width="40" height="40" aria-hidden="true" />
+            </a>
+          </article>
+
+          <article class="work-item">
+            <div class="work-gallery">
+              <img
+                src="images/jewelry/j6.PNG"
+                alt="AI-съёмка для магазина украшений — работа 1"
+                class="work-image"
+                loading="lazy"
+                width="456"
+                height="550"
+              />
+              <img
+                src="images/jewelry/j7.PNG "
+                alt="AI-съёмка для магазина украшений — работа 2"
+                class="work-image"
+                loading="lazy"
+                width="353"
+                height="550"
+              />
+              <img
+                src="images/jewelry/j4.PNG"
+                alt="AI-съёмка для магазина украшений — работа 3"
+                class="work-image work-image-desktop"
+                loading="lazy"
+                width="369"
+                height="553"
+              />
+            </div>
+            <div class="work-header">
+              <h2 class="work-title">AI-Съёмка для магазина украшений</h2>
+            </div>
+            <a href="work-2.html" class="work-btn" aria-label="Посмотреть полностью работу для магазина украшений">
+              Посмотреть полностью
+              <img src="images/arrow.png" alt="" class="btn-arrow" width="40" height="40" aria-hidden="true" />
+            </a>
+          </article>
+
+          <article class="work-item">
+            <div class="work-gallery">
+              <img
+                src="images/lsp/o2.PNG" 
+                alt="AI-съёмка для Олега ЛСП — работа 1"
+                class="work-image"
+                loading="lazy"
+                width="456"
+                height="550"
+              />
+              <img
+                src="images/lsp/o8.PNG" 
+                alt="AI-съёмка для Олега ЛСП — работа 2"
+                class="work-image"
+                loading="lazy"
+                width="353"
+                height="550"
+              />
+              <img
+                src="images/lsp/o1.PNG" 
+                alt="AI-съёмка для Олега ЛСП — работа 3"
+                class="work-image work-image-desktop"
+                loading="lazy"
+                width="369"
+                height="553"
+              />
+            </div>
+            <div class="work-header">
+              <h2 class="work-title">AI-Съёмка для олега лсп</h2>
+              <p class="work-subtitle">@lspolegi</p>
+            </div>
+            <a href="work-3.html" class="work-btn" aria-label="Посмотреть полностью работу для Олега ЛСП">
+              Посмотреть полностью
+              <img src="images/arrow.png" alt="" class="btn-arrow" width="40" height="40" aria-hidden="true" />
+            </a>
+          </article>
+
+          <article class="work-item">
+            <div class="work-gallery">
+              <img
+                src="images/gloves/g3.PNG"
+                alt="AI-съёмка для магазина перчаток — работа 1"
+                class="work-image"
+                loading="lazy"
+                width="456"
+                height="550"
+              />
+              <img
+                src="images/gloves/g1.PNG"
+                alt="AI-съёмка для магазина перчаток — работа 2"
+                class="work-image"
+                loading="lazy"
+                width="353"
+                height="550"
+              />
+              <img
+                  src="images/gloves/g2.PNG"
+                alt="AI-съёмка для магазина перчаток — работа 3"
+                class="work-image work-image-desktop"
+                loading="lazy"
+                width="369"
+                height="553"
+              />
+            </div>
+            <div class="work-header">
+              <h2 class="work-title">AI-Съёмка для магазина перчаток</h2>
+            </div>
+            <a href="work-4.html" class="work-btn" aria-label="Посмотреть полностью работу для магазина перчаток">
+              Посмотреть полностью
+              <img src="images/arrow.png" alt="" class="btn-arrow" width="40" height="40" aria-hidden="true" />
+            </a>
+          </article>
+        </div>
+      </section>
+      
+      <section id="contacts" class="contacts-section">
+        <div class="contacts-container">
+          <h2 class="contacts-title">Контакты</h2>
+          <p class="contacts-subtitle">Нажмите на иконку, чтобы перейти в соц.сеть</p>
+          
+          <div class="contacts-links">
+            <a href="https://t.me/arnipotapova" target="_blank" rel="noopener noreferrer" class="contact-link" aria-label="Написать в Telegram">
+              <img src="images/telegram.png" alt="Telegram" class="contact-icon" width="64" height="64" loading="lazy" />
+              <div class="contact-info">
+                <span class="contact-name">Телеграм</span>
+                <span class="contact-handle">@arnipotapova</span>
+              </div>
+            </a>
+            
+            <div class="contact-link-wrapper">
+              <a href="https://www.instagram.com/arnipotapova" target="_blank" rel="noopener noreferrer" class="contact-link" aria-label="Перейти в Instagram">
+                <img src="images/instagram.png" alt="Instagram" class="contact-icon" width="64" height="64" loading="lazy" />
+                <div class="contact-info">
+                  <h3 class="contact-name instagram-name">
+                    <span class="instagram-asterisk">*</span> Instagram
+                  </h3>
+                  <span class="contact-handle">@arnipotapova</span>
+                </div>
+              </a>
+              <p class="instagram-warning">* Instagram (продукт компании Meta, которая признана экстремистской организацией в России)</p>
+            </div>
+          </div>
+
+         
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p class="footer-text">2026 by arnipotapova</p>
+    </footer>
+    <script src="script.js"></script>
+  </body>
 </html>

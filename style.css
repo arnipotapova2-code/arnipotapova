@@ -1,0 +1,1448 @@
+/* 
+ * Шрифт BUYAN для всех браузеров включая Safari
+ * Используем TTF файлы из папки fonts/
+ * Несколько вариантов путей для максимальной совместимости с Safari
+ */
+@font-face {
+  font-family: "BUYAN";
+  src: url("./fonts/BuyanRegular.ttf") format("truetype"),
+       url("fonts/BuyanRegular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+  /* Оптимизация для Safari и macOS */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* RESET */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "BUYAN", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: #000;
+  overflow-x: hidden; /* 🔥 запрет горизонтального скролла */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+/* HEADER */
+.header {
+  width: 100%;
+  background-color: rgb(253, 253, 253);
+
+  /* 🔥 ОБВОДКА РЕКТАНГЛА */
+  border: 1px solid #000;
+  border-radius: 2px;
+
+  /* 🔥 ПРИЛИПАНИЕ */
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  /* Появление при свайпе вверх (только на мобильных) */
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Скрываем хедер при скролле вниз (только на мобильных) */
+@media (max-width: 47.99rem) {
+  .header {
+    transform: translateY(0);
+  }
+
+  .header:not(.visible) {
+    transform: translateY(-100%);
+  }
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: clamp(3rem, 6vw, 3.25rem); /* 52px */
+  padding-inline: clamp(1rem, 4vw, 2.5rem);
+}
+
+/* LOGO */
+.logo {
+  font-size: clamp(1.1rem, 2.5vw, 1.7rem);
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+/* NAV */
+.nav {
+  display: none;
+}
+
+.nav__list {
+  display: flex;
+  gap: clamp(1.5rem, 3vw, 3rem);
+}
+
+.nav__list a,
+.nav__link {
+  font-size: clamp(0.9rem, 2vw, 5.1rem);
+  letter-spacing: 0.08em;
+  color: #000;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  position: relative;
+}
+
+.nav__link::after {
+  content: "";
+  position: absolute;
+  bottom: -0.25rem;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #000;
+  transition: width 0.3s ease;
+}
+
+.nav__link:hover::after,
+.nav__link--active::after {
+  width: 100%;
+}
+
+.nav__link:hover {
+  color: #4c4c4c;
+}
+
+/* BURGER */
+.burger {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-left: auto;
+  padding: 0.5rem;
+  position: relative;
+  z-index: 1001;
+  transition: all 0.3s ease;
+}
+
+.burger span {
+  width: 1.5rem;
+  height: 2px;
+  background-color: #000;
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+
+/* Анимация превращения в крестик */
+.burger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(0.35rem, 0.35rem);
+}
+
+.burger.active span:nth-child(2) {
+  opacity: 0;
+  transform: scale(0);
+}
+
+.burger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(0.35rem, -0.35rem);
+}
+
+/* БУРГЕР МЕНЮ */
+.burger-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgb(253, 253, 253);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+  border-right: 1px solid #000;
+}
+
+.burger-menu.active {
+  transform: translateX(0);
+}
+
+.burger-menu__list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  list-style: none;
+}
+
+.burger-menu__link {
+  font-family: "BUYAN", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: #000;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  position: relative;
+}
+
+.burger-menu__link::after {
+  content: "";
+  position: absolute;
+  bottom: -0.25rem;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #000;
+  transition: width 0.3s ease;
+}
+
+.burger-menu__link:hover::after,
+.burger-menu__link--active::after {
+  width: 100%;
+}
+
+.burger-menu__link:hover {
+  color: #4c4c4c;
+}
+
+/* Скрываем бургер меню на десктопах */
+@media (min-width: 48rem) {
+  .burger-menu {
+    display: none;
+  }
+}
+
+/* < 768 */
+@media (max-width: 47.99rem) {
+  .logo {
+    display: none;
+  }
+
+  .nav {
+    display: none;
+  }
+}
+
+/* ≥ 768 */
+@media (min-width: 48rem) {
+  .logo {
+    display: block;
+  }
+
+  .nav {
+    display: block;
+  }
+
+  .burger {
+    display: none;
+  }
+}
+
+/* ≥ 1040 */
+@media (min-width: 65rem) {
+  .nav__list a {
+    font-size: 1.3rem;
+  }
+}
+
+/* ≥ 1440 */
+@media (min-width: 90rem) {
+  .logo {
+    font-size: 1.7rem;
+  }
+}
+
+/* ================= PHOTO SECTION ================= */
+.photo-section {
+  width: 100%;
+  margin-top: clamp(5rem, 10vw, 10rem); /* пространство между header и фото */
+}
+
+.photo-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden; /* обрезка по границам */
+}
+
+/* IMAGE */
+.photo-wrapper img {
+  width: 100%;
+  height: auto;
+  max-height: clamp(
+    21.3rem,
+    45vw,
+    51.5rem
+  ); /* desktop: ~665px, mobile: ~341px */
+  display: block;
+  object-fit: cover; /* 🔥 stretch и обрезка при сужении */
+  object-position: center top; /* обрезка сверху, центр по горизонтали */
+}
+
+/* NAME (mobile only) */
+.photo-name {
+  position: absolute;
+  top: 4.2rem; /* ~67px */
+  left: 1.375rem; /* ~22px */
+
+  font-family: "BUYAN", sans-serif;
+  font-size: 1.25rem; /* 20px */
+  font-weight: 400;
+  line-height: 1.5rem; /* 24px */
+  letter-spacing: 0;
+  color: rgba(0, 0, 0, 1);
+
+  display: none;
+}
+/* ================= AI DESIGN CREATIVE CODE резиновый центр ================= */
+.photo-description {
+  position: absolute;
+  top: clamp(110px, 4vw, 105px); /* вертикальная позиция от mobile → desktop */
+  left: 50%; /* центрируем горизонтально */
+  transform: translateX(-50%); /* смещаем для точного центрирования */
+
+  font-family: "BUYAN", sans-serif;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 1);
+  text-align: center; /* текст по центру */
+  z-index: 30;
+  margin: 0;
+
+  /* плавное масштабирование */
+  font-size: clamp(70px, 8vw, 185px); /* min 50px, max 165px */
+  line-height: clamp(61px, 6.5vw, 198px); /* min 61px, max 198px */
+
+  width: clamp(300px, 100%, 1285px); /* ширина резиновая */
+  height: auto;
+  background: none; /* фон убираем, если нужно */
+  padding: 0.1rem 0.5rem; /* при желании небольшой padding */
+}
+
+/* < 768 — mobile фикс */
+@media (max-width: 47.99rem) {
+  .photo-description {
+    top: 94px;
+    font-size: 43px;
+    line-height: 61px;
+    width: 90%;
+  }
+}
+
+/* < 768 — ПОКАЗЫВАЕМ */
+@media (max-width: 47.99rem) {
+  .photo-name {
+    display: block;
+  }
+  .photo-wrapper img {
+    height: 41.5rem;
+  }
+}
+
+/* ≥ 768 — СКРЫВАЕМ */
+@media (min-width: 48rem) {
+  .photo-name {
+    display: none;
+  }
+}
+
+/* ================= FLOWER ================= */
+
+/* по умолчанию скрыта на мобильных */
+.flower {
+  display: none;
+  width: clamp(410px, 30vw, 558px); /* резиновая ширина от mobile → desktop */
+  height: auto;
+  transform: rotate(79.18deg);
+  margin-top: -14rem; /* вертикальное смещение адаптивно */
+  margin-left: 70%;
+  mix-blend-mode: multiply; /* Pass Through */
+}
+
+/* ≥768px — показываем */
+@media (min-width: 48rem) {
+  .flower {
+    display: block;
+  }
+}
+
+/* tablet ~1024px */
+@media (min-width: 64rem) and (max-width: 89.99rem) {
+  .flower {
+    width: 557.71px; /* фиксированная ширина */
+    margin-top: -283.8px; /* Y из макета */
+    margin-left: 70%;
+  }
+}
+
+/* desktop ≥1440px */
+@media (min-width: 90rem) {
+  .flower {
+    width: 557.71px;
+    margin-top: -300.8px; /* Y из макета */
+    margin-left: 80%;
+  }
+}
+
+/* ================= BUTTONS SECTION ================= */
+.buttons-section {
+  display: flex;
+  flex-direction: column; /* по умолчанию вертикально */
+  align-items: center; /* по центру горизонтально */
+  gap: 1.5rem; /* расстояние между кнопками */
+  width: 100%;
+  margin-top: 0rem; /* отступ от предыдущего блока */
+}
+
+/* ================= BUTTONS ================= */
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  font-family: "BUYAN", sans-serif;
+  font-weight: 400;
+  font-size: clamp(20px, 2vw, 50px);
+  line-height: 1.2;
+  text-align: center;
+  color: #fff;
+  background-color: rgb(13, 8, 15);
+  padding: clamp(0.8rem, 1.5vw, 1.5rem) clamp(1.5rem, 3vw, 3rem);
+  border-radius: 0px;
+  text-decoration: none;
+  width: clamp(200px, 70%, 533px);
+  height: auto;
+  transition: background-color 0.2s ease;
+}
+
+/* при наведении — меняем цвет кнопки */
+.btn:hover {
+  background-color: #4c4c4c;
+}
+
+/* активная кнопка — фон и стрелка */
+.btn.active {
+  background-color: #4c4c4c;
+}
+
+.btn.active .btn-arrow {
+  transform: rotate(45deg); /* стрелка вниз */
+  transition: transform 0.2s ease;
+}
+
+/* стрелочка */
+.btn-arrow {
+  width: clamp(16px, 1.5vw, 40px);
+  height: auto;
+  transition: transform 0.2s ease;
+}
+
+/* текст под кнопками - базовые стили */
+.btn-text {
+  display: none; /* по умолчанию скрыт */
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 1);
+  text-align: left;
+  line-height: 22px;
+  font-size: 18px;
+  max-width: 368px;
+  margin-top: 1rem; /* расстояние от кнопок */
+}
+
+/* ТЕКСТ ДЛЯ МОБИЛЬНЫХ И ПЛАНШЕТОВ (до 1040px) */
+.btn-text-mobile {
+  display: none; /* по умолчанию скрыт, показывается через JS */
+}
+
+/* tablet ≥768px */
+@media (min-width: 48rem) and (max-width: 63.99rem) {
+  .btn-text-mobile {
+    max-width: 638px;
+  }
+}
+
+/* ТЕКСТ ДЛЯ ДЕСКТОПОВ (≥1040px) */
+.btn-text-desktop {
+  display: none; /* по умолчанию скрыт, показывается через JS */
+  width: 100%; /* занимает всю ширину под обеими кнопками */
+}
+
+/* desktop ≥1040px */
+@media (min-width: 54rem) {
+  .btn-text-desktop {
+    width: 100%; /* занимает всю ширину контейнера */
+    max-width: 804px;
+    font-size: 20px;
+    line-height: 30px;
+    margin-top: 1rem; /* текст под кнопками */
+    margin-left: auto; /* центрируем, если кнопки по центру */
+    margin-right: auto;
+  }
+}
+
+/* desktop ≥1440px */
+@media (min-width: 90rem) {
+  .btn-text-desktop {
+    width: 100%; /* занимает всю ширину контейнера */
+    max-width: 1171px;
+    font-size: 30px;
+    line-height: 36px;
+    margin-left: 0; /* выравниваем слева, как кнопки */
+    margin-right: auto;
+  }
+}
+
+/* ================= MEDIA QUERIES ================= */
+
+/* Mobile ≤430px — одна под другой, по центру */
+@media (max-width: 47.99rem) {
+  .buttons-section {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  .btn {
+    width: 362px; /* как в макете */
+    height: 61px;
+  }
+}
+
+/* Tablet 768px — вертикально, по макету */
+@media (min-width: 48rem) and (max-width: 63.99rem) {
+  .buttons-section {
+    flex-direction: column;
+    align-items: flex-start; /* чтобы X:62px */
+    gap: 1rem;
+    margin-left: 62px;
+    margin-top: -8rem; /* Y:512px */
+  }
+  .btn {
+    width: 365px;
+    height: 61px;
+  }
+}
+
+/* Medium desktop 1040px — две в ряд, по центру */
+@media (min-width: 64rem) and (max-width: 89.99rem) {
+  .buttons-section {
+    flex-direction: row;
+    flex-wrap: wrap; /* разрешаем перенос на новую строку для текста */
+    justify-content: center; /* по центру */
+    gap: 2rem;
+    margin-top: -12rem; /* Y:699px */
+  }
+  .btn {
+    width: 365px;
+    height: 61px;
+  }
+}
+
+/* Large desktop 1440px — две в ряд, макет */
+@media (min-width: 90rem) {
+  .buttons-section {
+    flex-direction: row;
+    flex-wrap: wrap; /* разрешаем перенос на новую строку для текста */
+    justify-content: flex-start; /* чтобы X:164px */
+    gap: 2rem;
+    margin-left: 164px;
+    margin-top: -12rem; /* Y:943px */
+  }
+  .btn {
+    width: 533.46px;
+    height: 89.15px;
+  }
+}
+
+/* ================= WORKS SECTION ================= */
+.works-section {
+  width: 100%;
+  padding-top: clamp(3rem, 5vw, 5rem);
+  padding-bottom: clamp(3rem, 5vw, 5rem);
+}
+
+.works-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(3rem, 6vw, 6rem);
+}
+
+.work-item {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Порядок элементов по умолчанию */
+.work-gallery {
+  order: 1;
+}
+
+.work-header {
+  order: 2;
+}
+
+.work-btn {
+  order: 3;
+}
+
+/* ЗАГОЛОВОК И ПОДЗАГОЛОВОК - базовые стили */
+.work-header {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: clamp(1rem, 2vw, 1.5rem);
+  width: 100%;
+  align-items: center;
+}
+
+.work-title {
+  font-family: "BUYAN", sans-serif;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 1);
+  text-align: left;
+  margin-bottom: 0.5rem;
+  font-size: clamp(1.675rem, 3vw, 3.125rem); /* 30px - 50px */
+  line-height: clamp(2.25rem, 4.5vw, 3.75rem); /* 36px - 60px */
+}
+
+.work-subtitle {
+  font-family: "Inter", sans-serif;
+  font-style: italic;
+  font-weight: 200;
+  color: rgba(0, 0, 0, 1);
+  text-align: left;
+  font-size: clamp(1.125rem, 2.5vw, 1.5625rem); /* 18px - 25px */
+  line-height: clamp(1.875rem, 3vw, 1.875rem); /* 30px */
+}
+
+/* ГАЛЕРЕЯ ФОТО */
+.work-gallery {
+  display: flex;
+  gap: clamp(0.75rem, 2vw, 1.5rem);
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto clamp(1.5rem, 3vw, 2rem);
+  justify-content: center;
+  padding: 0 clamp(1.5rem, 4vw, 7.5rem); /* отступы по бокам */
+}
+
+.work-image {
+  width: auto;
+  height: auto;
+  object-fit: cover;
+  display: block;
+  flex-shrink: 0;
+  max-width: 100%;
+}
+
+/* Скрываем третье фото на мобильных, планшетах и 1040 */
+.work-image-desktop {
+  display: none;
+}
+
+/* МОБИЛЬНЫЕ от 350px до 768px */
+@media (min-width: 21.875rem) and (max-width: 47.99rem) {
+  .work-gallery {
+    padding: 0 clamp(1.5rem, 4vw, 2rem);
+    gap: clamp(0.75rem, 2vw, 1.125rem);
+    margin-bottom: clamp(1.5rem, 3vw, 2rem);
+  }
+
+  /* Сохраняем пропорции как при 430px, но адаптируем размеры */
+  .work-image:not(.work-image-desktop) {
+    width: clamp(11.625rem, 43vw, 19.375rem); /* адаптивно от 186px */
+    height: clamp(17.5rem, 65vw, 23.375rem); /* адаптивно от 280px */
+    object-fit: cover; /* сохраняем пропорции, обрезаем при необходимости */
+    aspect-ratio: 186 / 280; /* пропорции как при 430px */
+  }
+
+  .work-image:not(.work-image-desktop):nth-child(2) {
+    object-fit: cover; /* сохраняем пропорции */
+    aspect-ratio: 186 / 280; /* те же пропорции */
+  }
+
+  .work-header {
+    align-items: center; /* центрируем по центру */
+    padding: 0 clamp(1.5rem, 4vw, 3rem);
+    width: 100%;
+    margin-bottom: clamp(0.5rem, 1vw, 1rem);
+  }
+
+  .work-title {
+    width: 100%;
+    max-width: 20.8125rem; /* ~333px */
+    margin-bottom: 0.5rem;
+    text-align: center; /* центрируем текст */
+  }
+
+  .work-subtitle {
+    width: 100%;
+    max-width: 9.9375rem; /* ~159px */
+    margin-bottom: 0;
+    text-align: center; /* центрируем текст */
+  }
+
+  .work-btn {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+
+/* МОБИЛЬНЫЕ до 350px */
+@media (max-width: 21.874rem) {
+  .work-gallery {
+    padding: 0 clamp(1.5rem, 4vw, 2rem);
+    gap: clamp(0.75rem, 2vw, 1.125rem);
+    margin-bottom: clamp(1.5rem, 3vw, 2rem);
+  }
+
+  .work-image:not(.work-image-desktop) {
+    width: clamp(11.625rem, 43vw, 11.625rem); /* фиксируем минимальный размер */
+    height: clamp(17.5rem, 65vw, 17.5rem); /* фиксируем минимальный размер */
+    object-fit: cover;
+    aspect-ratio: 186 / 280;
+  }
+
+  .work-image:not(.work-image-desktop):nth-child(2) {
+    object-fit: cover;
+    aspect-ratio: 186 / 280;
+  }
+
+  .work-header {
+    align-items: center; /* центрируем по центру */
+    padding: 0 clamp(1.5rem, 4vw, 3rem);
+    width: 100%;
+    margin-bottom: clamp(0.5rem, 1vw, 1rem);
+  }
+
+  .work-title {
+    width: 100%;
+    max-width: 20.8125rem;
+    margin-bottom: 0.5rem;
+    text-align: center; /* центрируем текст */
+  }
+
+  .work-subtitle {
+    width: 100%;
+    max-width: 9.9375rem;
+    margin-bottom: 0;
+    text-align: center; /* центрируем текст */
+  }
+
+  .work-btn {
+    margin-top: 0;
+  }
+}
+
+/* ПЛАНШЕТЫ 768px - заголовок и подзаголовок в одну строку */
+@media (min-width: 48rem) and (max-width: 63.99rem) {
+  .work-gallery {
+    padding: 0 clamp(2rem, 8vw, 6.3125rem);
+    gap: clamp(1rem, 2vw, 1.5rem);
+    margin-bottom: clamp(1.5rem, 3vw, 2rem);
+  }
+
+  /* Сохраняем пропорции, адаптируем размеры */
+  .work-image:not(.work-image-desktop) {
+    height: clamp(20rem, 49vw, 23.375rem); /* ~374px адаптивно */
+    object-fit: cover; /* сохраняем пропорции */
+  }
+
+  .work-image:not(.work-image-desktop):nth-child(1) {
+    width: clamp(19.375rem, 40vw, 19.375rem); /* ~310px адаптивно */
+    aspect-ratio: 310 / 374; /* пропорции как при 768px */
+  }
+
+  .work-image:not(.work-image-desktop):nth-child(2) {
+    width: clamp(15.5625rem, 31vw, 15.5625rem); /* ~249px адаптивно */
+    aspect-ratio: 249 / 374; /* пропорции как при 768px */
+  }
+
+  .work-header {
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: center;
+    gap: clamp(1.5rem, 3vw, 2rem);
+    padding: 0 clamp(2rem, 8vw, 6.3125rem);
+    margin-bottom: clamp(1rem, 2vw, 1.5rem);
+  }
+
+  .work-title {
+    margin-bottom: 0;
+    width: auto;
+    max-width: 20.8125rem; /* ~333px */
+  }
+
+  .work-subtitle {
+    width: auto;
+    max-width: 9.9375rem; /* ~159px */
+  }
+}
+
+/* ДЕСКТОП 1040px */
+@media (min-width: 64rem) and (max-width: 89.99rem) {
+  .work-gallery {
+    padding: 0 clamp(3rem, 6vw, 5.8125rem);
+    gap: clamp(1rem, 2vw, 1.5rem);
+  }
+
+  /* Сохраняем пропорции для всех фотографий */
+  .work-image:not(.work-image-desktop) {
+    height: clamp(25rem, 45vw, 28.125rem); /* ~450px адаптивно */
+    object-fit: cover; /* сохраняем пропорции */
+  }
+
+  .work-image:not(.work-image-desktop):nth-child(1) {
+    width: clamp(20rem, 40vw, 25rem); /* адаптивно */
+    aspect-ratio: 400 / 450; /* примерные пропорции */
+  }
+
+  .work-image:not(.work-image-desktop):nth-child(2) {
+    width: clamp(16rem, 32vw, 20rem); /* адаптивно */
+    aspect-ratio: 320 / 450; /* примерные пропорции */
+  }
+
+  .work-header {
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: center;
+    gap: clamp(1.5rem, 3vw, 2rem);
+    padding: 0 clamp(3rem, 6vw, 5.8125rem);
+  }
+
+  .work-title {
+    margin-bottom: 0;
+    width: auto;
+    max-width: 34.6875rem; /* ~555px */
+  }
+
+  .work-subtitle {
+    width: auto;
+    max-width: 13.875rem; /* ~222px */
+  }
+}
+
+/* ДЕСКТОП 1440px - 3 фото в ряд */
+@media (min-width: 90rem) {
+  .work-gallery {
+    padding: 0 clamp(3rem, 8vw, 7.5rem);
+    gap: clamp(1rem, 2vw, 1.5rem);
+  }
+
+  /* Показываем третье фото */
+  .work-image-desktop {
+    display: block;
+  }
+
+  /* Сохраняем пропорции для всех фотографий */
+  .work-image {
+    object-fit: cover; /* сохраняем пропорции для всех */
+  }
+
+  .work-image:nth-child(1) {
+    width: clamp(20rem, 32vw, 28.5rem); /* ~456px адаптивно */
+    height: clamp(30rem, 38vw, 34.38375rem); /* ~550.14px адаптивно */
+    aspect-ratio: 456 / 550.14; /* пропорции как при 1440px */
+  }
+
+  .work-image:nth-child(2) {
+    width: clamp(18rem, 25vw, 22.0625rem); /* ~353px адаптивно */
+    height: clamp(30rem, 38vw, 34.375rem); /* ~550px адаптивно */
+    aspect-ratio: 353 / 550; /* пропорции как при 1440px */
+  }
+
+  .work-image:nth-child(3) {
+    width: clamp(18.5rem, 26vw, 23.0625rem); /* ~369px адаптивно */
+    height: clamp(30rem, 38vw, 34.5625rem); /* ~553px адаптивно */
+    aspect-ratio: 369 / 553; /* пропорции как при 1440px */
+  }
+
+  .work-header {
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: center;
+    gap: clamp(1.5rem, 3vw, 2rem);
+    padding: 0 clamp(3rem, 8vw, 7.5rem);
+  }
+
+  .work-title {
+    margin-bottom: 0;
+    width: auto;
+    max-width: 50rem; /* ~800px */
+  }
+
+  .work-subtitle {
+    width: auto;
+  }
+}
+
+/* КНОПКА "ПОСМОТРЕТЬ ПОЛНОСТЬЮ" - как кнопка "Обо мне" */
+.work-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  font-family: "BUYAN", sans-serif;
+  font-weight: 400;
+  font-size: clamp(1rem, 2vw, 3.125rem); /* как у .btn */
+  line-height: 1.2;
+  text-align: center;
+  color: #fff;
+  background-color: rgb(13, 8, 15);
+  padding: clamp(0.8rem, 1.5vw, 1.5rem) clamp(1.5rem, 3vw, 3rem);
+  border-radius: 0;
+  text-decoration: none;
+  width: clamp(12.5rem, 70%, 33.34rem); /* как у .btn */
+  height: auto;
+  transition: background-color 0.2s ease;
+  margin: clamp(1rem, 2vw, 1.5rem) auto 0;
+}
+
+.work-btn:hover {
+  background-color: #4c4c4c;
+}
+
+.work-btn .btn-arrow {
+  width: clamp(1rem, 1.5vw, 2.5rem); /* как у .btn .btn-arrow */
+  height: auto;
+  transition: transform 0.2s ease;
+}
+
+.work-btn:hover .btn-arrow {
+  transform: translateX(0.3125rem); /* 5px */
+}
+
+/* ================= CONTACTS SECTION ================= */
+.contacts-section {
+  width: 100%;
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 4vw, 7.5rem);
+  margin-top: clamp(3rem, 5vw, 5rem);
+  background-color: #DFDBCF;
+  margin-bottom: clamp(3rem, 5vw, 5rem);
+}
+
+.contacts-container {
+  width: 100%;
+  max-width: 90rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(1rem, 3vw, 2rem);
+}
+
+.contacts-title {
+  font-family: "BUYAN", sans-serif;
+  font-weight: 400;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: clamp(2.5rem, 6vw, 4.5rem);
+  color: rgba(0, 0, 0, 1);
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.contacts-subtitle {
+  font-family: "Inter", sans-serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  line-height: clamp(1.5rem, 3vw, 2rem);
+  color: rgba(0, 0, 0, 1);
+  text-align: center;
+  margin-top: clamp(0.2rem, 0.5vw, 0.5rem);
+  margin-bottom: clamp(1.5rem, 3vw, 2rem);
+}
+
+.contacts-links {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2rem, 4vw, 3rem);
+  width: 100%;
+  max-width: 40rem;
+  align-items: center;
+}
+
+.contact-link {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 2vw, 1.5rem);
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
+  padding: clamp(1rem, 2vw, 1.5rem);
+  transition: opacity 0.2s ease;
+}
+
+.contact-link:hover {
+  opacity: 0.7;
+}
+
+.contact-icon {
+  width: clamp(4rem, 8vw, 4rem); /* больше на мобильных и планшетах */
+  height: clamp(4rem, 8vw, 4rem);
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+/* Иконки больше на мобильных и планшетах */
+@media (max-width: 63.99rem) {
+  .contact-icon {
+    width: clamp(4.5rem, 10vw, 5rem);
+    height: clamp(4.5rem, 10vw, 5rem);
+  }
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.contact-name {
+  font-family: "BUYAN", sans-serif;
+  font-weight: 400;
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  line-height: clamp(1.5rem, 3.5vw, 2rem);
+  color: rgba(0, 0, 0, 1);
+  text-align: left;
+}
+
+.contact-handle {
+  font-family: "Inter", sans-serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  line-height: clamp(1.25rem, 3vw, 1.5rem);
+  color: rgba(0, 0, 0, 1);
+  text-align: left;
+}
+
+.instagram-name {
+  position: relative;
+}
+
+.instagram-asterisk {
+  color: #ff0000;
+  font-size: 1.2em;
+  margin-right: 0.25rem;
+}
+
+.contact-link-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 0.75rem;
+}
+
+.instagram-warning {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: clamp(0.75rem, 2vw, 0.875rem);
+  line-height: clamp(1rem, 2.5vw, 1.25rem);
+  color: rgba(0, 0, 0, 0.7);
+  text-align: left;
+  margin: 0;
+  padding-left: clamp(5.5rem, 12vw, 6.5rem); /* отступ чтобы выровнять с текстом */
+  font-style: italic;
+}
+
+/* Адаптивность для контактов */
+@media (max-width: 47.99rem) {
+  .contacts-section {
+    padding: clamp(2rem, 4vw, 3rem) clamp(1.5rem, 4vw, 2rem);
+  }
+  
+  .contact-link {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .contact-info {
+    align-items: center;
+    text-align: center;
+  }
+  
+  .contact-name,
+  .contact-handle {
+    text-align: center;
+  }
+  
+  .instagram-warning {
+    text-align: center;
+    padding-left: 0;
+  }
+}
+
+@media (min-width: 48rem) and (max-width: 63.99rem) {
+  .instagram-warning {
+    padding-left: clamp(5.5rem, 12vw, 6.5rem);
+  }
+}
+
+/* ================= FOOTER ================= */
+.footer {
+  width: 100%;
+  background-color: rgb(0, 0, 0);
+  padding: clamp(1.5rem, 3vw, 2rem) clamp(1rem, 2vw, 2rem);
+  margin-top: 0; /* отступ уже в contacts-section */
+}
+
+.footer-text {
+  font-family: "BUYAN", sans-serif;
+  font-weight: 400;
+  font-size: clamp(0.875rem, 2vw, 2.5rem);
+  line-height: clamp(1.25rem, 2.5vw, 1.5rem);
+  color: rgb(255, 255, 255);
+  text-align: center;
+  margin: 0;
+}
+
+/* ================= WORKS PAGE ================= */
+
+/* Активный пункт меню (серый цвет) */
+.nav__link--active,
+.burger-menu__link--active {
+  color: #4c4c4c !important;
+}
+
+/* Логотип "На главную" на десктопах */
+.logo-home {
+  display: none;
+}
+
+@media (min-width: 48rem) {
+  .logo-home {
+    display: block;
+  }
+}
+
+/* Кнопка НАЗАД */
+.back-section {
+  width: 100%;
+
+  margin-top: clamp(2rem, 4vw, 3rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  font-family: "BUYAN", sans-serif;
+  font-weight: 400;
+  font-size: clamp(1rem, 2vw, 3.125rem);
+  line-height: 1.2;
+  text-align: center;
+  color: #000;
+  background-color: #fff;
+  padding: clamp(0.8rem, 1.5vw, 1.5rem) clamp(1.5rem, 3vw, 3rem);
+  border: 1px solid #000;
+  border-radius: 0;
+  text-decoration: none;
+  width: auto;
+  height: auto;
+  transition: background-color 0.2s ease;
+  margin: 0 auto;
+}
+
+.back-btn:hover {
+  background-color: #f5f5f5;
+}
+
+.back-arrow {
+  width: clamp(1rem, 1.5vw, 2.5rem);
+  height: auto;
+  transform: rotate(180deg); /* стрелка влево */
+  filter: brightness(0); /* черная стрелка */
+  transition: transform 0.2s ease;
+}
+
+.back-btn:hover .back-arrow {
+  transform: rotate(180deg) translateX(-0.3125rem);
+}
+
+/* Кнопка НАЗАД на works.html - на 20% меньше ширины */
+.back-btn-works {
+  width: clamp(10rem, 56%, 26.67rem); /* 80% от ширины кнопок работ */
+}
+
+/* Кнопка НАЗАД на страницах работ - sticky к верху */
+.back-section-sticky {
+  position: sticky;
+  top: clamp(4rem, 8vw, 6rem); /* отступ от верха, чтобы не заезжала за хедер */
+  z-index: 100;
+  background-color: transparent;
+  padding: clamp(1rem, 2vw, 1.5rem) 0 clamp(1rem, 2vw, 1.5rem) clamp(1.5rem, 4vw, 7.5rem);
+  margin-top: clamp(1rem, 2vw, 1.5rem);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.back-section-sticky .back-btn {
+  margin: 0;
+  background-color: #fff;
+}
+
+.back-section-sticky .back-btn:hover {
+  background-color: #f5f5f5;
+}
+
+/* Заголовок РАБОТЫ */
+.works-title-section {
+  width: 100%;
+  padding: clamp(2rem, 4vw, 3rem) clamp(1.5rem, 4vw, 7.5rem);
+  text-align: center;
+}
+
+.works-page-title {
+  font-family: "BUYAN", sans-serif;
+  font-weight: 400;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  line-height: clamp(3rem, 7vw, 5.5rem);
+  color: rgba(0, 0, 0, 1);
+  text-align: center;
+  margin: 0;
+}
+
+/* Список работ */
+.works-list-section {
+  width: 100%;
+  padding: 0 clamp(1.5rem, 4vw, 7.5rem) clamp(3rem, 5vw, 5rem);
+}
+
+.works-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(1rem, 2vw, 1.5rem);
+  width: 100%;
+  max-width: 90rem;
+  margin: 0 auto;
+}
+
+.work-item-btn {
+  width: clamp(12.5rem, 70%, 33.34rem);
+  justify-content: space-between;
+  align-self: center;
+}
+
+/* Чередование стилей кнопок работ */
+.work-item-btn:nth-child(odd) {
+  background-color: #030303;
+  color: #fff;
+  border: none;
+}
+
+.work-item-btn:nth-child(odd) .btn-arrow {
+  filter: brightness(0) invert(1); /* белая стрелка для серых кнопок */
+}
+
+.work-item-btn:nth-child(even) {
+  background-color: #fff;
+  color: #000;
+  border: 2px solid #000;
+}
+
+.work-item-btn:nth-child(even) .btn-arrow {
+  filter: brightness(0); /* черная стрелка для белых кнопок */
+}
+
+.work-item-btn .btn-arrow {
+  transform: rotate(0deg); /* стрелка вправо (по умолчанию) */
+}
+
+.work-item-btn:hover .btn-arrow {
+  transform: translateX(0.3125rem); /* стрелка вправо при hover */
+}
+
+/* Страница отдельной работы */
+.work-detail-page {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.work-detail-title-section {
+  width: 100%;
+  padding: clamp(2rem, 4vw, 3rem) clamp(1.5rem, 4vw, 7.5rem);
+  text-align: center;
+}
+
+.work-detail-title {
+  font-family: "BUYAN", sans-serif;
+  font-weight: 400;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  line-height: clamp(3rem, 7vw, 5.5rem);
+  color: rgba(0, 0, 0, 1);
+  text-align: center;
+  margin: 0;
+}
+
+.work-detail-gallery {
+  width: 100%;
+  padding: 0 12px clamp(3rem, 5vw, 5rem);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(1rem, 2vw, 1.5rem);
+}
+
+.work-detail-gallery img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  aspect-ratio: 3 / 4;
+  display: block;
+}
+
+/* Планшеты - 2 в ряд, отступы 24px */
+@media (min-width: 48rem) and (max-width: 63.99rem) {
+  .work-detail-gallery {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0 24px clamp(3rem, 5vw, 5rem);
+    gap: clamp(1rem, 2vw, 1.5rem);
+  }
+}
+
+/* Десктоп - 2 в ряд */
+@media (min-width: 64rem) {
+  .work-detail-gallery {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0 clamp(1.5rem, 4vw, 7.5rem) clamp(3rem, 5vw, 5rem);
+    gap: clamp(1.5rem, 3vw, 2rem);
+    max-width: 90rem;
+    margin: 0 auto;
+  }
+}
+
+/* Адаптивность для страницы работ */
+@media (max-width: 47.99rem) {
+  .back-section {
+    padding: clamp(1.5rem, 3vw, 2rem) clamp(1.5rem, 4vw, 2rem);
+  }
+  
+  .works-title-section {
+    padding: clamp(1.5rem, 3vw, 2rem) clamp(1.5rem, 4vw, 2rem);
+  }
+  
+  .works-list-section {
+    padding: 0 clamp(1.5rem, 4vw, 2rem) clamp(2rem, 4vw, 3rem);
+  }
+}
+
+/* ================= ФОРМА ОБРАТНОЙ СВЯЗИ ================= */
+.contact-form {
+  width: 100%;
+  max-width: 40rem;
+  margin-top: clamp(2rem, 4vw, 3rem);
+  padding: clamp(1.5rem, 3vw, 2rem);
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 0;
+}
+
+.form-title {
+  font-family: "BUYAN", sans-serif;
+  font-weight: 400;
+  font-size: clamp(1.5rem, 3.5vw, 2rem);
+  line-height: clamp(2rem, 4vw, 2.5rem);
+  color: rgba(0, 0, 0, 1);
+  text-align: center;
+  margin-bottom: clamp(1.5rem, 3vw, 2rem);
+}
+
+.form-group {
+  margin-bottom: clamp(1rem, 2vw, 1.5rem);
+  width: 100%;
+}
+
+.form-label {
+  display: block;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  line-height: clamp(1.25rem, 3vw, 1.5rem);
+  color: rgba(0, 0, 0, 1);
+  margin-bottom: 0.5rem;
+}
+
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: clamp(0.75rem, 1.5vw, 1rem);
+  font-family: "Inter", sans-serif;
+  font-size: clamp(1rem, 2.5vw, 1.125rem);
+  line-height: 1.5;
+  color: rgba(0, 0, 0, 1);
+  background-color: #fff;
+  border: 1px solid #000;
+  border-radius: 0;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: #4c4c4c;
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.form-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: "BUYAN", sans-serif;
+  font-weight: 400;
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  line-height: 1.2;
+  text-align: center;
+  color: #fff;
+  background-color: rgb(13, 8, 15);
+  padding: clamp(0.8rem, 1.5vw, 1rem) clamp(1.5rem, 3vw, 2rem);
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+  width: 100%;
+  margin-top: clamp(1rem, 2vw, 1.5rem);
+  transition: background-color 0.2s ease;
+}
+
+.form-btn:hover {
+  background-color: #4c4c4c;
+}
+
+.form-btn:active {
+  transform: scale(0.98);
+}
+
+@media (max-width: 47.99rem) {
+  .contact-form {
+    padding: clamp(1rem, 2vw, 1.5rem);
+  }
+}

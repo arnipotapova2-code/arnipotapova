@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Реклама помады — ARNIPOTAPOVA</title>
+    <meta name="description" content="Съёмка для Карины Мурашкиной — AI, дизайн, креатив и код" />
+    
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <header class="header">
+      <div class="header__inner">
+        <!-- LEFT -->
+        <a href="index.html" class="logo">На главную</a>
+
+        <!-- RIGHT -->
+        <nav class="nav" aria-label="Навигация">
+          <ul class="nav__list">
+            <li><a href="works.html" class="nav__link nav__link--active">РАБОТЫ</a></li>
+            <li><a href="index.html#contacts" class="nav__link nav__link-contacts">КОНТАКТЫ</a></li>
+          </ul>
+        </nav>
+
+        <button class="burger" aria-label="Открыть меню">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
+      <!-- Бургер меню -->
+      <nav class="burger-menu">
+        <ul class="burger-menu__list">
+          <li><a href="index.html" class="burger-menu__link">На главную</a></li>
+          <li><a href="works.html" class="burger-menu__link burger-menu__link--active">РАБОТЫ</a></li>
+          <li><a href="index.html#contacts" class="burger-menu__link burger-menu__link-contacts">КОНТАКТЫ</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="work-detail-page">
+      <!-- Кнопка НАЗАД -->
+      <section class="back-section back-section-sticky">
+        <a href="works.html" class="back-btn">
+          <img src="images/arrow.png" alt="arrow" class="back-arrow" />
+          К работам
+        </a>
+      </section>
+
+      <!-- Заголовок -->
+      <section class="work-detail-title-section">
+        <h1 class="work-detail-title">AI-Съёмка для рекламы помады</h1>
+      </section>
+
+      <!-- Галерея фотографий -->
+      <section class="work-detail-gallery">
+        <img src="images/lipstik/l1.PNG" alt="Реклама помады" />
+        <img src="images/lipstik/l2.PNG" alt="Реклама помады" />
+        <img src="images/lipstik/l3.PNG" alt="Реклама помады" />
+        <img src="images/lipstik/l4.PNG" alt="Реклама помады" />
+        <img src="images/lipstik/l5.PNG" alt="Реклама помады" />
+        <img src="images/lipstik/l6.PNG" alt="Реклама помады" />
+        <img src="images/lipstik/l7.PNG" alt="Реклама помады" />
+        <img src="images/lipstik/l8.PNG" alt="Реклама помады" />
+        <img src="images/lipstik/l9.PNG" alt="Реклама помады" />
+        <img src="images/lipstik/l10.PNG" alt="Реклама помады" />
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p class="footer-text">2026 by arnipotapova</p>
+    </footer>
+
+    <script>
+      // ================= БУРГЕР МЕНЮ =================
+      const burger = document.querySelector(".burger");
+      const burgerMenu = document.querySelector(".burger-menu");
+      const burgerLinks = document.querySelectorAll(".burger-menu__link");
+
+      // Открытие/закрытие бургер меню
+      burger.addEventListener("click", () => {
+        burger.classList.toggle("active");
+        burgerMenu.classList.toggle("active");
+        document.body.style.overflow = burgerMenu.classList.contains("active")
+          ? "hidden"
+          : "";
+      });
+
+      // Закрытие меню при клике на ссылку
+      burgerLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          burger.classList.remove("active");
+          burgerMenu.classList.remove("active");
+          document.body.style.overflow = "";
+        });
+      });
+
+      // Появление хедера при свайпе вверх (только на мобильных)
+      const header = document.querySelector(".header");
+
+      // Проверяем, является ли устройство мобильным
+      function checkIfMobile() {
+        return window.matchMedia("(max-width: 47.99rem)").matches;
+      }
+
+      // Инициализация логики хедера для мобильных
+      function initHeaderScroll() {
+        if (!checkIfMobile()) return;
+
+        let touchStartY = 0;
+        let touchEndY = 0;
+        let touchStartTime = 0;
+        let lastScrollTop = 0;
+
+        // Изначально хедер виден
+        header.classList.add("visible");
+
+        document.addEventListener(
+          "touchstart",
+          (e) => {
+            touchStartY = e.touches[0].clientY;
+            touchStartTime = Date.now();
+          },
+          { passive: true },
+        );
+
+        document.addEventListener(
+          "touchend",
+          (e) => {
+            touchEndY = e.changedTouches[0].clientY;
+            const touchDuration = Date.now() - touchStartTime;
+            const swipeDistance = Math.abs(touchStartY - touchEndY);
+
+            // Минимальная дистанция для свайпа
+            if (swipeDistance > 30 && touchDuration < 300) {
+              if (touchStartY > touchEndY) {
+                // Свайп вверх - показываем хедер
+                header.classList.add("visible");
+              } else if (touchStartY < touchEndY) {
+                // Свайп вниз - скрываем хедер
+                header.classList.remove("visible");
+              }
+            }
+          },
+          { passive: true },
+        );
+
+        // Отслеживание скролла для мобильных
+        let ticking = false;
+
+        window.addEventListener(
+          "scroll",
+          () => {
+            if (!ticking) {
+              window.requestAnimationFrame(() => {
+                const currentScroll =
+                  window.pageYOffset || document.documentElement.scrollTop;
+
+                if (currentScroll > lastScrollTop && currentScroll > 50) {
+                  // Скролл вниз - скрываем хедер
+                  header.classList.remove("visible");
+                } else if (currentScroll < lastScrollTop) {
+                  // Скролл вверх - показываем хедер
+                  header.classList.add("visible");
+                }
+
+                lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+                ticking = false;
+              });
+
+              ticking = true;
+            }
+          },
+          { passive: true },
+        );
+      }
+
+      // Инициализируем при загрузке
+      initHeaderScroll();
+
+      // Переинициализируем при изменении размера окна
+      window.addEventListener("resize", () => {
+        if (checkIfMobile()) {
+          header.classList.add("visible");
+        }
+      });
+    </script>
+  </body>
+</html>
